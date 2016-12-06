@@ -1,0 +1,30 @@
+//Remember to set the containing element to relative.
+
+@mixin triangle($direction: 'up', $size: 6px, $color: #333) {
+  @if type-of($direction) != "string" {
+    @warn "`#{$direction}` should be a string for `triangle` mixin.";
+  } @else {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    content: '';
+    @if ($direction == 'up') {
+      border-bottom: $size solid $color;
+      border-left: 1/2*$size solid transparent;
+      border-right: 1/2*$size solid transparent;
+    } @else if ($direction == 'down') {
+      border-top: $size solid $color;
+      border-left: 1/2*$size solid transparent;
+      border-right: 1/2*$size solid transparent;
+    } @else if ($direction == 'left') {
+      border-top: 1/2*$size solid transparent;
+      border-bottom: 1/2*$size solid transparent;
+      border-right: $size solid $color;
+    } @else if ($direction == 'right') {
+      border-top: 1/2*$size solid transparent;
+      border-bottom: 1/2*$size solid transparent;
+      border-left: $size solid $color;
+    }
+  }
+}
